@@ -1,0 +1,9 @@
+fastapi
+pydantic
+pydantic[email]
+uvicorn
+gitpython
+uvicorn
+ruff
+redmail
+
