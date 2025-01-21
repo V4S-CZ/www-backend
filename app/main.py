@@ -18,6 +18,7 @@ app = FastAPI(
     },
     title="v4s websites backend",
     # description="REST API",
+    root_path=os.getenv("PATH_PREFIX", "/"),
 )
 
 try:
