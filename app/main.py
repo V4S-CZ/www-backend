@@ -40,7 +40,7 @@ app.add_middleware(
 
 
 @app.get("/", response_model=RootResponse)
-@app.head("/", response_model=RootResponse)
+@app.head("/", response_model=RootResponse, include_in_schema=False)
 async def root():
     """Root path method"""
     git = Git()
