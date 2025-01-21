@@ -51,7 +51,7 @@ async def root():
     }
 
 
-@app.get("/health-check", response_model=str)
+@app.get("/health-check", response_model=str, include_in_schema=False)
 def health_check():
     """Method for docker container health check"""
     return "success"
