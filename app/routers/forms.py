@@ -17,7 +17,7 @@ def contact_form(data: ContactFormInput):
     client.send(
         subject="Contact form",
         sender=mail_service.get_default_sender(),
-        receivers=["matuska.lukas@lukasmatuska.cz"],
+        receivers=["v4s@lukasmatuska.cz", "lmatuska@v4s.cz"],
         text=f"Name: \"{data.name}\"\nE-mail: \"{data.email}\"\nMessage:\n{data.message}",
     )
     return {"status": "ok"}
