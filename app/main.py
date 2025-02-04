@@ -8,7 +8,16 @@ from app.routers import forms
 from app.schemas.root import RootResponse
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+import logging
 
+
+class EndpointFilter(logging.Filter):
+    def filter(self, record: logging.LogRecord) -> bool:
+        return "/health-check" not in record.getMessage()
+
+
+# Filter out route for docker container health check
+logging.getLogger("uvicorn.access").addFilter(EndpointFilter())
 
 app = FastAPI(
     swagger_ui_parameters={
