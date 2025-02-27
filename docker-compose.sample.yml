@@ -14,5 +14,6 @@ services:
     # volumes:
     environment:
       TZ: Europe/Prague
+      RECAPTCHA_SECRET: INSERT_HERE
     stdin_open: true  # -i
     tty: true         # -t
