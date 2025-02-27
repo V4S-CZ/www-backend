@@ -1,5 +1,6 @@
 from fastapi import APIRouter  # , HTTPException
 from app.services import mail as mail_service
+from app.services import recaptcha
 from app.schemas.forms import ContactFormInput, FormResponse
 
 
@@ -12,7 +13,14 @@ router = APIRouter(
 
 
 @router.post("/contact", response_model=FormResponse)
-def contact_form(data: ContactFormInput):
+def contact_form(
+    data: ContactFormInput
+):
+    valid_captcha = recaptcha.verify_recaptcha(data.recaptcha_token)
+    if not valid_captcha:
+        return {
+            "status": "Invalid captcha"
+        }
     client = mail_service.get_mail_client()
     client.send(
         subject="Contact form",
